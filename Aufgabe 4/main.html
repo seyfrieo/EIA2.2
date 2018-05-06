@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <title>Memory</title>
+    <script src="main.js"></script>
+</head>
+<body>
+    <h1>Erstelle eigenes Memory...</h1>
+    <form id="form">
+        Kartensätze: <br>
+        <div id="kartensets"></div>
+        <br>
+        Kartenpaare:
+        <select required value="kartenpaare" id="kartenpaare"></select>
+        <br><br><br>
+        Spieler:
+        <select value="players" id="spieler">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+        </select>
+        <br><br>
+        <div id="spieler-placeholder">
+            <label for="spieler1">Name 1:</label>
+            <input type="text" id="spieler1" class="playername" required>
+        </div>
+        <br><br>
+        <input type="submit" id="submit" value="Start">
+    </form>
+</body>
+</html>
