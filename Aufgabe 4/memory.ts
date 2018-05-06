@@ -8,25 +8,24 @@
         nicht kopiert und auch nicht diktiert.
 */
 
-namespace memoryspiel {
+namespace Memoryspiel {
 
    let counter: number = 0;
    let isRunning: boolean = false;
    let clickedOnCard: HTMLDivElement[] = [];
 
    let paareAnz : number = 0;
-   document.addEventListener("DOMContentLoaded", init);
     
     //Abfrage Spieleranzahl/Paaranzahl
-    function init(): void {
-
+    export function init(): void {
+        createHTML();
     }
     // init endet hier
 
     //***********************************************************************************************    
     
     // Funktion f�r Website
-    function createHTML (_paare: number, _spieler: number): void {
+    function createHTML (): void {
         
         let h: HTMLElement = document.createElement("header");
             h.className= "nav-def";
@@ -43,16 +42,16 @@ namespace memoryspiel {
             logo.src="images/unicorn_game.png";
             hDiv.appendChild(logo);
             console.log("load logo");
-        
-        playground(_paare, _spieler);
-        info(_spieler);
+
+        playground(memory);
+        info(memory);
         
         }
     
     //***********************************************************************************************
     
     // Funktion f�r Kartenbereich
-    function playground (_paare: number, _spieler: number):void {
+    function playground (_memory: Memory):void {
         
         let spielfeld: HTMLDivElement = document.createElement("div");
             spielfeld.className="spielfeld center";
@@ -60,18 +59,14 @@ namespace memoryspiel {
             console.log("load spielfeld");
         
         // Array mit Content
-        let contentArray: string[] = ["images/karten/0.jpg", "images/karten/0.jpg", 
-                                      "images/karten/1.jpg", "images/karten/1.jpg",
-                                      "images/karten/2.jpg", "images/karten/2.jpg", 
-                                      "images/karten/3.jpg", "images/karten/3.jpg", 
-                                      "images/karten/4.jpg", "images/karten/4.jpg", 
-                                      "images/karten/5.jpg", "images/karten/5.jpg",
-                                      "images/karten/6.jpg", "images/karten/6.jpg", 
-                                      "images/karten/7.jpg", "images/karten/7.jpg"];          
+        let contentArray: string[] = [];
+
+        for (let i: number = 0; i < _memory.kartenpaare; i++) {
+            contentArray.push("images/Karten/" + _memory.setname + "/" + i + ".jpg", "images/Karten/" + _memory.setname + "/" + i + ".jpg");
+        }
         console.log(contentArray);
-        
         // Neues Array -> aus altem -> anzahl doppeln, sodal paare gebildet sind
-         let selectedContent: string[] = contentArray.slice(0, (_paare*2));
+         let selectedContent: string[] = contentArray.slice(0, (_memory.kartenpaare*2));
          console.log(selectedContent);    
         
         // Mischen
@@ -115,7 +110,7 @@ namespace memoryspiel {
     //***********************************************************************************************
     
     //Funktion f�r Footer
-    function info(_spieler: number): void {
+    function info(_memory: Memory): void {
         
         let footer: HTMLElement = document.createElement("footer");
         footer.id = "footer";
@@ -126,14 +121,14 @@ namespace memoryspiel {
         let spielerInfo: HTMLElement = document.createElement("fieldset");
         document.getElementById("footer").appendChild(spielerInfo);
 
-        for (let i: number = 1; i < (_spieler + 1); i++) {
+        for (let i: number = 0; i < _memory.spieler.length; i++) {
             let spieler: HTMLElement = document.createElement("legend");
-            spieler.innerHTML = "Spieler " + i + ": ";
+            spieler.innerHTML = _memory.spieler[i].name + ": ";
             spielerInfo.appendChild(spieler);
 
             let score: HTMLElement = document.createElement("p");
             score.id = "spieler" + i;
-            score.innerHTML = "0";
+            score.innerHTML = _memory.spieler[i].score.toString();
             spielerInfo.appendChild(score);
 
         }

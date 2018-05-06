@@ -1,14 +1,13 @@
-var memoryspiel;
-(function (memoryspiel) {
+var Memoryspiel;
+(function (Memoryspiel) {
     var kartensets = [
-        ["Einhorn", 7],
-        ["Blobfisch", 4],
+        ["Einhorn", 8],
+        ["Blobfisch", 7],
         ["Alpaka", 5]
     ];
     document.addEventListener("DOMContentLoaded", main);
     function main() {
         createHTML();
-        console.log("hi");
         var playerSelect = document.getElementById("spieler");
         console.log(playerSelect);
         playerSelect.addEventListener("change", function () {
@@ -17,7 +16,9 @@ var memoryspiel;
         var form = document.getElementById("form");
         form.addEventListener("submit", function (evt) {
             evt.preventDefault();
-            console.log(sendInformation());
+            sendInformation();
+            Memoryspiel.init();
+            this.style.display = "none";
         });
     }
     function createHTML() {
@@ -107,10 +108,13 @@ var memoryspiel;
             };
             spielers.push(spieler);
         }
-        return memoryspiel.memory = {
+        console.log("memory saved");
+        Memoryspiel.memory = {
             setname: kartenset,
             kartenpaare: paare,
             spieler: spielers
         };
+        return Memoryspiel.memory;
     }
-})(memoryspiel || (memoryspiel = {}));
+    Memoryspiel.sendInformation = sendInformation;
+})(Memoryspiel || (Memoryspiel = {}));

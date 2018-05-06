@@ -1,29 +1,36 @@
-namespace memoryspiel {
-
+namespace Memoryspiel {
+/*    Aufgabe: (Aufgabe 4)
+    Name: (Dominik Seyfried)
+    Matrikel: (256734)
+    Datum: (06.05.2018)
+    Hiermit versichere ich, dass ich diesen
+    Code selbst geschrieben habe. Er wurde
+    nicht kopiert und auch nicht diktiert.*/
     export let memory: Memory;
 
-    interface Memory {
+    export interface Memory {
         setname: string,
         kartenpaare: number,
         spieler: Player[]
     }
 
-    interface Player {
+    export interface Player {
         name: string;
         score: number;
     }
 
     let kartensets = [
-        ["Einhorn", 7],
-        ["Blobfisch", 4],
+        ["Einhorn", 8],
+        ["Blobfisch", 7],
         ["Alpaka", 5]
     ];
 
+
     document.addEventListener("DOMContentLoaded", main);
+
 
     function main(): void {
         createHTML();
-        console.log("hi");
 
         let playerSelect: HTMLSelectElement = document.getElementById("spieler") as HTMLSelectElement;
         console.log(playerSelect);
@@ -35,7 +42,9 @@ namespace memoryspiel {
         let form: HTMLFormElement = document.getElementById("form") as HTMLFormElement;
         form.addEventListener("submit", function(evt){
             evt.preventDefault();
-            console.log(sendInformation());
+            sendInformation();
+            init();
+            this.style.display = "none";
         });
 
     }
@@ -129,7 +138,7 @@ namespace memoryspiel {
         }
     }
 
-    function sendInformation(): Memory {
+    export function sendInformation(): Memory {
 
         let kartenset: string;
         for (let i: number = 0; i < kartensets.length; i++) {
@@ -157,11 +166,14 @@ namespace memoryspiel {
             spielers.push(spieler);
         }
 
-        return memory = {
+        console.log("memory saved");
+        memory = {
             setname: kartenset,
             kartenpaare: paare,
             spieler: spielers
-        }
+        };
+
+        return memory;
 
     }
 }

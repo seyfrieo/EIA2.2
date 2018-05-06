@@ -7,20 +7,21 @@
         Code selbst geschrieben habe. Er wurde
         nicht kopiert und auch nicht diktiert.
 */
-var memoryspiel;
-(function (memoryspiel) {
+var Memoryspiel;
+(function (Memoryspiel) {
     var counter = 0;
     var isRunning = false;
     var clickedOnCard = [];
     var paareAnz = 0;
-    document.addEventListener("DOMContentLoaded", init);
     //Abfrage Spieleranzahl/Paaranzahl
     function init() {
+        createHTML();
     }
+    Memoryspiel.init = init;
     // init endet hier
     //***********************************************************************************************    
     // Funktion f�r Website
-    function createHTML(_paare, _spieler) {
+    function createHTML() {
         var h = document.createElement("header");
         h.className = "nav-def";
         document.body.appendChild(h);
@@ -34,28 +35,24 @@ var memoryspiel;
         logo.src = "images/unicorn_game.png";
         hDiv.appendChild(logo);
         console.log("load logo");
-        playground(_paare, _spieler);
-        info(_spieler);
+        playground(Memoryspiel.memory);
+        info(Memoryspiel.memory);
     }
     //***********************************************************************************************
     // Funktion f�r Kartenbereich
-    function playground(_paare, _spieler) {
+    function playground(_memory) {
         var spielfeld = document.createElement("div");
         spielfeld.className = "spielfeld center";
         document.body.appendChild(spielfeld);
         console.log("load spielfeld");
         // Array mit Content
-        var contentArray = ["images/karten/0.jpg", "images/karten/0.jpg",
-            "images/karten/1.jpg", "images/karten/1.jpg",
-            "images/karten/2.jpg", "images/karten/2.jpg",
-            "images/karten/3.jpg", "images/karten/3.jpg",
-            "images/karten/4.jpg", "images/karten/4.jpg",
-            "images/karten/5.jpg", "images/karten/5.jpg",
-            "images/karten/6.jpg", "images/karten/6.jpg",
-            "images/karten/7.jpg", "images/karten/7.jpg"];
+        var contentArray = [];
+        for (var i = 0; i < _memory.kartenpaare; i++) {
+            contentArray.push("images/Karten/" + _memory.setname + "/" + i + ".jpg", "images/Karten/" + _memory.setname + "/" + i + ".jpg");
+        }
         console.log(contentArray);
         // Neues Array -> aus altem -> anzahl doppeln, sodal paare gebildet sind
-        var selectedContent = contentArray.slice(0, (_paare * 2));
+        var selectedContent = contentArray.slice(0, (_memory.kartenpaare * 2));
         console.log(selectedContent);
         // Mischen
         selectedContent.sort(function () { return 0.5 - Math.random(); });
@@ -85,7 +82,7 @@ var memoryspiel;
     }
     //***********************************************************************************************
     //Funktion f�r Footer
-    function info(_spieler) {
+    function info(_memory) {
         var footer = document.createElement("footer");
         footer.id = "footer";
         document.body.appendChild(footer);
@@ -93,13 +90,13 @@ var memoryspiel;
         //infobereich muss ich noch machen, folgend der grundlegende Aufbau:
         var spielerInfo = document.createElement("fieldset");
         document.getElementById("footer").appendChild(spielerInfo);
-        for (var i = 1; i < (_spieler + 1); i++) {
+        for (var i = 0; i < _memory.spieler.length; i++) {
             var spieler = document.createElement("legend");
-            spieler.innerHTML = "Spieler " + i + ": ";
+            spieler.innerHTML = _memory.spieler[i].name + ": ";
             spielerInfo.appendChild(spieler);
             var score = document.createElement("p");
             score.id = "spieler" + i;
-            score.innerHTML = "0";
+            score.innerHTML = _memory.spieler[i].score.toString();
             spielerInfo.appendChild(score);
         }
         //fieldset - box
@@ -150,4 +147,4 @@ var memoryspiel;
         grats.innerHTML = "HAPPY UNICORN!!!!";
         document.body.appendChild(grats);
     }
-})(memoryspiel || (memoryspiel = {})); //namespace ende
+})(Memoryspiel || (Memoryspiel = {})); //namespace ende
