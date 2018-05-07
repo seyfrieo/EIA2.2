@@ -191,6 +191,7 @@ namespace Memoryspiel {
 
     function gratulations(): void {
         let grats: HTMLDivElement = document.createElement("div");
+        grats.id = "grats";
         grats.innerHTML = "HAPPY UNICORN!!!!";
         document.body.appendChild(grats);
     }

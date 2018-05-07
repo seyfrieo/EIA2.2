@@ -145,6 +145,7 @@ var Memoryspiel;
     }
     function gratulations() {
         var grats = document.createElement("div");
+        grats.id = "grats";
         grats.innerHTML = "HAPPY UNICORN!!!!";
         document.body.appendChild(grats);
     }

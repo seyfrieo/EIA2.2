@@ -13,6 +13,14 @@
     padding: 1em;
 }
 
+#grats {
+    position: absolute;
+    top: 20%;
+    left: auto;
+    font-size: 10em;
+    text-align: center;
+}
+
 h1 {
     color: #ff3684;
 }
