@@ -12,19 +12,19 @@ var Memoryspiel;
     var counter = 0;
     var isRunning = false;
     var clickedOnCard = [];
-    var paareAnz = 0;
     //Abfrage Spieleranzahl/Paaranzahl
     function init() {
-        createHTML();
+        playground(Memoryspiel.memory);
+        info(Memoryspiel.memory);
     }
     Memoryspiel.init = init;
     // init endet hier
     //***********************************************************************************************    
     // Funktion f�r Website
-    function createHTML() {
+    function createHeader() {
         var h = document.createElement("header");
         h.className = "nav-def";
-        document.body.appendChild(h);
+        document.getElementsByTagName('header')[0].appendChild(h);
         console.log("load header");
         var hDiv = document.createElement("div");
         hDiv.className = "zentriert";
@@ -35,9 +35,8 @@ var Memoryspiel;
         logo.src = "images/unicorn_game.png";
         hDiv.appendChild(logo);
         console.log("load logo");
-        playground(Memoryspiel.memory);
-        info(Memoryspiel.memory);
     }
+    Memoryspiel.createHeader = createHeader;
     //***********************************************************************************************
     // Funktion f�r Kartenbereich
     function playground(_memory) {
@@ -109,8 +108,10 @@ var Memoryspiel;
         var image = _card.children[0];
         var _src = image.className;
         image.src = _src;
-        counter++;
-        clickedOnCard.push(_card);
+        if (clickedOnCard[0] != _card) {
+            counter++;
+            clickedOnCard.push(_card);
+        }
         if (counter == 2) {
             isRunning = true;
             setTimeout(handleCards, 2000);
@@ -130,8 +131,8 @@ var Memoryspiel;
         if (clickedOnCard[0].className == clickedOnCard[1].className) {
             removeCard(clickedOnCard[0]);
             removeCard(clickedOnCard[1]);
-            paareAnz--;
-            if (paareAnz == 0) {
+            Memoryspiel.memory.kartenpaare--;
+            if (Memoryspiel.memory.kartenpaare == 0) {
                 gratulations();
             }
         }
@@ -148,3 +149,4 @@ var Memoryspiel;
         document.body.appendChild(grats);
     }
 })(Memoryspiel || (Memoryspiel = {})); //namespace ende
+//# sourceMappingURL=memory.js.map

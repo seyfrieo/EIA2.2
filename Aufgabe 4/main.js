@@ -7,6 +7,7 @@ var Memoryspiel;
     ];
     document.addEventListener("DOMContentLoaded", main);
     function main() {
+        Memoryspiel.createHeader();
         createHTML();
         var playerSelect = document.getElementById("spieler");
         console.log(playerSelect);
@@ -118,3 +119,4 @@ var Memoryspiel;
     }
     Memoryspiel.sendInformation = sendInformation;
 })(Memoryspiel || (Memoryspiel = {}));
+//# sourceMappingURL=main.js.map

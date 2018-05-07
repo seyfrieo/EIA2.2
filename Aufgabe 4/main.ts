@@ -8,6 +8,8 @@ namespace Memoryspiel {
     nicht kopiert und auch nicht diktiert.*/
     export let memory: Memory;
 
+
+
     export interface Memory {
         setname: string,
         kartenpaare: number,
@@ -30,7 +32,10 @@ namespace Memoryspiel {
 
 
     function main(): void {
+
+        createHeader();
         createHTML();
+
 
         let playerSelect: HTMLSelectElement = document.getElementById("spieler") as HTMLSelectElement;
         console.log(playerSelect);
@@ -46,6 +51,8 @@ namespace Memoryspiel {
             init();
             this.style.display = "none";
         });
+
+
 
     }
 

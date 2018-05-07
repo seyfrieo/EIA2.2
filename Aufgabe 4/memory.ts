@@ -13,23 +13,22 @@ namespace Memoryspiel {
    let counter: number = 0;
    let isRunning: boolean = false;
    let clickedOnCard: HTMLDivElement[] = [];
-
-   let paareAnz : number = 0;
     
     //Abfrage Spieleranzahl/Paaranzahl
     export function init(): void {
-        createHTML();
+        playground(memory);
+        info(memory);
     }
     // init endet hier
 
     //***********************************************************************************************    
     
     // Funktion f�r Website
-    function createHTML (): void {
+    export function createHeader (): void {
         
         let h: HTMLElement = document.createElement("header");
             h.className= "nav-def";
-            document.body.appendChild(h);
+            document.getElementsByTagName('header')[0].appendChild(h);
             console.log("load header");
         
         let hDiv: HTMLDivElement = document.createElement("div");
@@ -43,9 +42,6 @@ namespace Memoryspiel {
             hDiv.appendChild(logo);
             console.log("load logo");
 
-        playground(memory);
-        info(memory);
-        
         }
     
     //***********************************************************************************************
@@ -150,9 +146,10 @@ namespace Memoryspiel {
         let image: HTMLImageElement = _card.children[0] as HTMLImageElement;
         let _src: string = image.className;
         image.src = _src;
-
-        counter++;
-        clickedOnCard.push(_card);
+        if (clickedOnCard[0] != _card) {
+            counter++;
+            clickedOnCard.push(_card);
+        }
         if (counter == 2){
             isRunning = true;
             setTimeout(handleCards, 2000);
@@ -178,8 +175,8 @@ namespace Memoryspiel {
         if (clickedOnCard[0].className == clickedOnCard[1].className) {
             removeCard(clickedOnCard[0]);
             removeCard(clickedOnCard[1]);
-            paareAnz--;
-            if (paareAnz == 0) {
+            memory.kartenpaare--;
+            if (memory.kartenpaare == 0) {
                 gratulations();
             }
         }

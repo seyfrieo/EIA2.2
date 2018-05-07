@@ -1,4 +1,21 @@
+#form {
+    background-color: #ffe6f3;
+    width: 100%;
+    font-family: 'Ranga', cursive;
+    position: fixed;
+    left: 0em;
+    margin: auto;
+    top: -0.5em;
+    left: -0.5em;
+    float: left;
+    z-index: 5;
+    position: relative;
+    padding: 1em;
+}
 
+h1 {
+    color: #ff3684;
+}
 header {
 	font-family: 'Ranga', cursive;
 	background-color: #ffe6f3;
