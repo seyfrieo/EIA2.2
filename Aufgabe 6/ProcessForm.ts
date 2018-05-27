@@ -45,51 +45,10 @@ namespace A6 {
     }
 
     function massInsert(): void {
-        let studi1: Studi = {name: "Einstein",
-            firstname: "Albert",
-            matrikel: 123,
-            age: 1,
-            gender: true,
-            studiengang: "MKB"};
-
-        let studiString1: string = JSON.stringify(studi1);
-
-        let xhr1: XMLHttpRequest = new XMLHttpRequest();
-        xhr1.open("GET", address + "?command=insert&data=" + studiString1, true);
-        xhr1.addEventListener("readystatechange", handleStateChangeInsert);
-        xhr1.send();
-
-
-        
-        let studi2: Studi = {name: "Zweistein",
-            firstname: "Albert",
-            matrikel: 456,
-            age: 2,
-            gender: true,
-            studiengang: "MKB"};
-
-        let studiString2: string = JSON.stringify(studi2);
-
-        let xhr2: XMLHttpRequest = new XMLHttpRequest();
-        xhr2.open("GET", address + "?command=insert&data=" + studiString2, true);
-        xhr2.addEventListener("readystatechange", handleStateChangeInsert);
-        xhr2.send();
-
-
-
-        let studi3: Studi = {name: "Dreistein",
-            firstname: "Albert",
-            matrikel: 789,
-            age: 3,
-            gender: true,
-            studiengang: "MKB"};
-
-        let studiString3: string = JSON.stringify(studi3);
-
-        let xhr3: XMLHttpRequest = new XMLHttpRequest();
-        xhr3.open("GET", address + "?command=insert&data=" + studiString3, true);
-        xhr3.addEventListener("readystatechange", handleStateChangeInsert);
-        xhr3.send();
+        let xhr: XMLHttpRequest = new XMLHttpRequest();
+        xhr.open("GET", address + "?command=massinsert", true);
+        xhr.addEventListener("readystatechange", handleStateChangeInsert);
+        xhr.send();
     }
 
     function handleStateChangeInsert(_event: ProgressEvent): void {
