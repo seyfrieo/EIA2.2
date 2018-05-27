@@ -17,9 +17,11 @@ namespace A6 {
         let insertButton: HTMLButtonElement = <HTMLButtonElement>document.getElementById("insert");
         let refreshButton: HTMLButtonElement = <HTMLButtonElement>document.getElementById("refresh");
         let searchButton: HTMLButtonElement = <HTMLButtonElement>document.getElementById("searchbtn");
+        let massInsertButton: HTMLButtonElement = <HTMLButtonElement>document.getElementById("massinsert");
         insertButton.addEventListener("click", insert);
         refreshButton.addEventListener("click", refresh);
         searchButton.addEventListener("click", search);
+        massInsertButton.addEventListener("click", massInsert);
     }
 
     function insert(): void {
@@ -34,6 +36,37 @@ namespace A6 {
             gender: genderButton.checked,
             studiengang: document.getElementsByTagName("select").item(0).value
         };
+        let studiString: string = JSON.stringify(studi);
+
+        let xhr: XMLHttpRequest = new XMLHttpRequest();
+        xhr.open("GET", address + "?command=insert&data=" + studiString, true);
+        xhr.addEventListener("readystatechange", handleStateChangeInsert);
+        xhr.send();
+    }
+
+    function massInsert(): void {
+        let studi: Studi[] = [];
+        studi.push({name: "Einstein",
+            firstname: "Albert",
+            matrikel: 123,
+            age: 1,
+            gender: true,
+            studiengang: "MKB"});
+
+        studi.push({name: "Zweistein",
+            firstname: "Albert",
+            matrikel: 456,
+            age: 2,
+            gender: true,
+            studiengang: "MKB"});
+
+        studi.push({name: "Dreistein",
+            firstname: "Albert",
+            matrikel: 789,
+            age: 3,
+            gender: true,
+            studiengang: "MKB"});
+
         let studiString: string = JSON.stringify(studi);
 
         let xhr: XMLHttpRequest = new XMLHttpRequest();

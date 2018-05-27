@@ -14,9 +14,11 @@ var A6;
         var insertButton = document.getElementById("insert");
         var refreshButton = document.getElementById("refresh");
         var searchButton = document.getElementById("searchbtn");
+        var massInsertButton = document.getElementById("massinsert");
         insertButton.addEventListener("click", insert);
         refreshButton.addEventListener("click", refresh);
         searchButton.addEventListener("click", search);
+        massInsertButton.addEventListener("click", massInsert);
     }
     function insert() {
         var genderButton = document.getElementById("male");
@@ -30,6 +32,32 @@ var A6;
             gender: genderButton.checked,
             studiengang: document.getElementsByTagName("select").item(0).value
         };
+        var studiString = JSON.stringify(studi);
+        var xhr = new XMLHttpRequest();
+        xhr.open("GET", address + "?command=insert&data=" + studiString, true);
+        xhr.addEventListener("readystatechange", handleStateChangeInsert);
+        xhr.send();
+    }
+    function massInsert() {
+        var studi = [];
+        studi.push({ name: "Einstein",
+            firstname: "Albert",
+            matrikel: 123,
+            age: 1,
+            gender: true,
+            studiengang: "MKB" });
+        studi.push({ name: "Zweistein",
+            firstname: "Albert",
+            matrikel: 456,
+            age: 2,
+            gender: true,
+            studiengang: "MKB" });
+        studi.push({ name: "Dreistein",
+            firstname: "Albert",
+            matrikel: 789,
+            age: 3,
+            gender: true,
+            studiengang: "MKB" });
         var studiString = JSON.stringify(studi);
         var xhr = new XMLHttpRequest();
         xhr.open("GET", address + "?command=insert&data=" + studiString, true);
