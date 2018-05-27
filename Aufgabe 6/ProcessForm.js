@@ -18,7 +18,7 @@ var A6;
         insertButton.addEventListener("click", insert);
         refreshButton.addEventListener("click", refresh);
         searchButton.addEventListener("click", search);
-        massInsertButton.addEventListener("click", massInsert);
+        //massInsertButton.addEventListener("click", massInsert);
     }
     function insert() {
         var genderButton = document.getElementById("male");
@@ -38,12 +38,12 @@ var A6;
         xhr.addEventListener("readystatechange", handleStateChangeInsert);
         xhr.send();
     }
-    function massInsert() {
-        var xhr = new XMLHttpRequest();
-        xhr.open("GET", address + "?command=massinsert", true);
-        xhr.addEventListener("readystatechange", handleStateChangeInsert);
-        xhr.send();
-    }
+    // function massInsert(): void {
+    //     let xhr: XMLHttpRequest = new XMLHttpRequest();
+    //     xhr.open("GET", address + "?command=massinsert", true);
+    //     xhr.addEventListener("readystatechange", handleStateChangeInsert);
+    //     xhr.send();
+    // }
     function handleStateChangeInsert(_event) {
         var xhr = _event.target;
         if (xhr.readyState == XMLHttpRequest.DONE) {
