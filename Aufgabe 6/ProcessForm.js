@@ -39,30 +39,39 @@ var A6;
         xhr.send();
     }
     function massInsert() {
-        var studi = [];
-        studi.push({ name: "Einstein",
+        var studi1 = { name: "Einstein",
             firstname: "Albert",
             matrikel: 123,
             age: 1,
             gender: true,
-            studiengang: "MKB" });
-        studi.push({ name: "Zweistein",
+            studiengang: "MKB" };
+        var studiString1 = JSON.stringify(studi1);
+        var xhr1 = new XMLHttpRequest();
+        xhr1.open("GET", address + "?command=insert&data=" + studiString1, true);
+        xhr1.addEventListener("readystatechange", handleStateChangeInsert);
+        xhr1.send();
+        var studi2 = { name: "Zweistein",
             firstname: "Albert",
             matrikel: 456,
             age: 2,
             gender: true,
-            studiengang: "MKB" });
-        studi.push({ name: "Dreistein",
+            studiengang: "MKB" };
+        var studiString2 = JSON.stringify(studi2);
+        var xhr2 = new XMLHttpRequest();
+        xhr2.open("GET", address + "?command=insert&data=" + studiString2, true);
+        xhr2.addEventListener("readystatechange", handleStateChangeInsert);
+        xhr2.send();
+        var studi3 = { name: "Dreistein",
             firstname: "Albert",
             matrikel: 789,
             age: 3,
             gender: true,
-            studiengang: "MKB" });
-        var studiString = JSON.stringify(studi);
-        var xhr = new XMLHttpRequest();
-        xhr.open("GET", address + "?command=insert&data=" + studiString, true);
-        xhr.addEventListener("readystatechange", handleStateChangeInsert);
-        xhr.send();
+            studiengang: "MKB" };
+        var studiString3 = JSON.stringify(studi3);
+        var xhr3 = new XMLHttpRequest();
+        xhr3.open("GET", address + "?command=insert&data=" + studiString3, true);
+        xhr3.addEventListener("readystatechange", handleStateChangeInsert);
+        xhr3.send();
     }
     function handleStateChangeInsert(_event) {
         var xhr = _event.target;
