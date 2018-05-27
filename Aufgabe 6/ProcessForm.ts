@@ -21,7 +21,7 @@ namespace A6 {
         insertButton.addEventListener("click", insert);
         refreshButton.addEventListener("click", refresh);
         searchButton.addEventListener("click", search);
-        //massInsertButton.addEventListener("click", massInsert);
+        massInsertButton.addEventListener("click", massInsert);
     }
 
     function insert(): void {
@@ -44,12 +44,12 @@ namespace A6 {
         xhr.send();
     }
 
-    // function massInsert(): void {
-    //     let xhr: XMLHttpRequest = new XMLHttpRequest();
-    //     xhr.open("GET", address + "?command=massinsert", true);
-    //     xhr.addEventListener("readystatechange", handleStateChangeInsert);
-    //     xhr.send();
-    // }
+    function massInsert(): void {
+        let xhr: XMLHttpRequest = new XMLHttpRequest();
+        xhr.open("GET", address + "?command=massinsert", true);
+        xhr.addEventListener("readystatechange", handleStateChangeInsert);
+        xhr.send();
+    }
 
     function handleStateChangeInsert(_event: ProgressEvent): void {
         let xhr: XMLHttpRequest = (<XMLHttpRequest>_event.target);
