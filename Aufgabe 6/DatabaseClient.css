@@ -1,0 +1,24 @@
+/*    Aufgabe: (Aufgabe 6)
+    Name: (Dominik Seyfried)
+    Matrikel: (256734)
+    Datum: (27.05.2018)
+    Hiermit versichere ich, dass ich diesen
+    Code selbst geschrieben habe. Er wurde
+    nicht kopiert und auch nicht diktiert.*/
+* {
+	display: block;
+	vertical-align: top
+}
+
+head {
+	display: none;
+}
+
+
+input[type="radio"], input[type="checkbox"], input[type="number"], label {
+	display: inline;
+}
+
+button {
+	margin:1em 0em;
+}
