@@ -1,0 +1,31 @@
+/*  Aufgabe: (Aufgabe 10)
+    Name: (Dominik Seyfried)
+    Matrikel: (256734)
+    Datum: (24.06.2018)
+    Hiermit versichere ich, dass ich diesen
+    Code selbst geschrieben habe. Er wurde
+    nicht kopiert und auch nicht diktiert.
+*/
+
+canvas {
+    width: 100%;
+}
+
+@media screen and (min-width: 35em) {
+    canvas {
+        width: 100%;
+    }
+
+    @media screen and (min-width: 48em) {
+        canvas {
+            width: 100%;
+        }
+
+        @media screen and (min-width: 64em) {
+            canvas {
+                width: 800px;
+                height: 600px;
+            }
+        }
+    }
+}
