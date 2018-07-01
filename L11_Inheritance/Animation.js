@@ -20,7 +20,19 @@ var L11_Inheritance;
         animate();
     }
     function insertNewObject(_event) {
-        var star = new L11_Inheritance.DavidStar("#ffff00");
+        var x = _event.clientX;
+        var y = _event.clientY;
+        var n = Math.random() * 2;
+        n = Math.round(n);
+        var star;
+        if (n == 0)
+            star = new L11_Inheritance.DavidStar("#ffff00");
+        if (n == 1)
+            star = new L11_Inheritance.Rect("#ffff00");
+        if (n == 2)
+            star = new L11_Inheritance.DavidStar2("#ffff00");
+        star.x = x;
+        star.y = y;
         stars.push(star);
     }
     function animate() {

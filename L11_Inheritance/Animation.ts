@@ -28,8 +28,23 @@ namespace L11_Inheritance {
         animate();
     }
 
-    function insertNewObject(_event: Event): void {
-        let star: DavidStar = new DavidStar("#ffff00");
+    function insertNewObject(_event: MouseEvent): void {
+        let x: number = _event.clientX;
+        let y: number = _event.clientY;
+
+        let n: number = Math.random() * 2;
+        n = Math.round(n);
+
+        let star: DavidStar;
+        if (n == 0)
+            star = new DavidStar("#ffff00");
+        if (n == 1)
+            star = new Rect("#ffff00");
+        if (n == 2)
+            star = new DavidStar2("#ffff00");
+
+        star.x = x;
+        star.y = y;
         stars.push(star);
     }
 
